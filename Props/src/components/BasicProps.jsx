@@ -35,9 +35,8 @@ function BasicProps() {
     <section className="p-8 bg-white rounded-xl shadow-2xl">
       <h2 className="text-4xl font-bold mb-2">Basic Prop</h2>
       <p>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempora ab
-        sequi, architecto nisi consequuntur aspernatur ducimus excepturi eaque
-        velit exercitationem.
+        Props are arguments passed to React components. They allow you to pass
+        data from parent to child components.
       </p>
       <h5 className="text-2xl font-bold my-4">Click Count {clickCount}</h5>
       <div className="space-y-4">
