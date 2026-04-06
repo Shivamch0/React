@@ -45,19 +45,19 @@ function AppContent() {
           }`}>A comprehensive guide to understanding props in React</p>
         </header>
         <div className="space-y-8">
-          <div id="basic" className="scroll-mt-200">
+          <div id="basic" className="scroll-mt-20">
             <BasicProps />
           </div>
-          <div id="basic" className="scroll-mt-200">
+          <div id="ref" className="scroll-mt-20">
             <RefProps />
           </div>
-          <div id="basic" className="scroll-mt-200">
+          <div id="children" className="scroll-mt-20">
             <ChildrenProps />
           </div>
-          <div id="basic" className="scroll-mt-200">
+          <div id="complex" className="scroll-mt-20">
             <ComplexProps />
           </div>
-          <div id="basic" className="scroll-mt-200">
+          <div id="themeToggler" className="scroll-mt-20">
             <ThemeToogler />
           </div>
         </div>
