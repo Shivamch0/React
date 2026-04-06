@@ -48,14 +48,14 @@ function AppContent() {
           <div id="basic" className="scroll-mt-20">
             <BasicProps />
           </div>
-          <div id="ref" className="scroll-mt-20">
-            <RefProps />
-          </div>
           <div id="children" className="scroll-mt-20">
             <ChildrenProps />
           </div>
           <div id="complex" className="scroll-mt-20">
             <ComplexProps />
+          </div>
+           <div id="ref" className="scroll-mt-20">
+            <RefProps />
           </div>
           <div id="themeToggler" className="scroll-mt-20">
             <ThemeToogler />
