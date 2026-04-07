@@ -2,7 +2,7 @@ import BasicProps from "./components/BasicProps";
 import ChildrenProps from "./components/ChildrenProps";
 import ComplexProps from "./components/ComplexProps";
 import RefProps from "./components/RefProps";
-import ThemeToogler from "./components/ThemeToogler";
+import ThemeToogler, { ThemeProvider , useTheme } from "./components/ThemeToogler";
 
 function Navigation() {
   const isDark = true;
@@ -15,34 +15,44 @@ function Navigation() {
     { id: "theme", label: "Theme Props" },
   ];
 
-  return <nav className={` sticky top-0 z-50 shadow-md  ${
-          isDark ? "text-white" : "text-gray-800"
-        }`}>
+  return (
+    <nav
+      className={` sticky top-0 z-50 shadow-md  ${
+        isDark ? "text-white" : "text-gray-800"
+      }`}
+    >
       <div className="container mx-auto px-4 py-4">
         <div className="flex justify-center gap-2 flex-wrap ">
           {sections.map((section) => (
-            <button key={section.id} className={`px-4 py-2  rounded-lg font-medium bg-blue-600 text-white cursor-pointer hover:bg-sky-700 `}>
-              <span >{section.label}</span>
+            <button
+              key={section.id}
+              className={`px-4 py-2  rounded-lg font-medium bg-blue-600 text-white cursor-pointer hover:bg-sky-700 `}
+            >
+              <span>{section.label}</span>
             </button>
           ))}
         </div>
       </div>
-  </nav>;
+    </nav>
+  );
 }
 
 function AppContent() {
-   const isDark = true;
+  // const isDark = true;
+  const { isDark } = useTheme()
   return (
     <div className={`min-h-screen bg-gray-800`}>
-      <Navigation/>
+      <Navigation />
       <div className="container mx-auto px-4 py-8">
-        <header className={`text-center mb-12 transition-colors ${
-          isDark ? "text-white" : "text-gray-800"
-        }`}>
-          <h1 className="text-5xl font-bold mb-4">React Props</h1>
-          <p className={`text-xl ${
+        <header
+          className={`text-center mb-12 transition-colors ${
             isDark ? "text-white" : "text-gray-800"
-          }`}>A comprehensive guide to understanding props in React</p>
+          }`}
+        >
+          <h1 className="text-5xl font-bold mb-4">React Props</h1>
+          <p className={`text-xl ${isDark ? "text-white" : "text-gray-800"}`}>
+            A comprehensive guide to understanding props in React
+          </p>
         </header>
         <div className="space-y-8">
           <div id="basic" className="scroll-mt-20">
@@ -54,7 +64,7 @@ function AppContent() {
           <div id="complex" className="scroll-mt-20">
             <ComplexProps />
           </div>
-           <div id="ref" className="scroll-mt-20">
+          <div id="ref" className="scroll-mt-20">
             <RefProps />
           </div>
           <div id="themeToggler" className="scroll-mt-20">
@@ -66,8 +76,13 @@ function AppContent() {
   );
 }
 
+//Use of Provider
 function App() {
-  return <AppContent />;
+  return (
+    <ThemeProvider> 
+      <AppContent />
+    </ThemeProvider>
+  );
 }
 
 export default App;
