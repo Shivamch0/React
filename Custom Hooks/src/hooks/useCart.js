@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 
 export function useCart() {
   // Lazy Loading
@@ -47,19 +47,41 @@ export function useCart() {
             : item,
         );
       }
-      return [...currentCart , {...product , quantity : 1}]
+      return [...currentCart, { ...product, quantity: 1 }];
     });
   };
 
   const removeFromCart = (productId) => {
-    setCart(currentCart => currentCart.filter(item => item.id !== productId.id))
-  }
+    setCart((currentCart) =>
+      currentCart.filter((item) => item.id !== productId.id),
+    );
+  };
 
-  const updateCart = (productId , quantity) => {
-    if(quantity < 1) return ;
+  const updateCart = (productId, quantity) => {
+    if (quantity < 1) return;
 
-    setCart(currentCart => currentCart.map(item => item.id === productId.id ? {...item , quantity} : item ))
-  }
+    setCart((currentCart) =>
+      currentCart.map((item) =>
+        item.id === productId.id ? { ...item, quantity } : item,
+      ),
+    );
+  };
 
-  
+  // This is not required 19 or later
+  const total = useMemo(() => {
+    return Number(
+      cart.reduce((sum, item) => {
+        const itemTotal = item.price * (item.quantity || 0);
+        return sum + itemTotal;
+      }, 0),
+    );
+  }, [cart]);
+
+  return {
+    cart,
+    addToCart,
+    removeFromCart,
+    updateCart,
+    total,
+  };
 }
